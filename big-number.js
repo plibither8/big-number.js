@@ -3,7 +3,7 @@
 function add(a, b) {
 
 	//Check whether arguments are string
-	if (typeof a === "string" && typeof b = "string") {
+	if (typeof a === "string" && typeof b === "string") {
 
 		let lengthA = a.length;
 		let lengthB = b.length;
@@ -30,9 +30,75 @@ function add(a, b) {
 		return requiredNumber;
 
 	}
+
+	else {
+
+		return "Arguments must be strings";
+
+	}
 	
 }
 
+/**SUBTRACTION FUNCTION*/
+
+function subtract(a, b) {
+
+	//Check whether arguments are string
+	if (typeof a === "string" && typeof b === "string") {
+
+		let lengthA = a.length;
+		let lengthB = b.length;
+		
+		if (lengthB > lengthA) subtract(b, a); //first argument necessarily has to be greater than or equal to second argument
+
+		let difference = lengthA - lengthB;
+		
+		let requiredNumber = "";
+		let temporarySum, requiredDigit;
+		
+		for (let i = lengthB - 1; i >= 0; --i) {
+			
+			digitAtA = a.charAt(difference + i);
+			digitAtB = b.charAt(i);
+
+			if (digitAtA >= digitAtB) {
+
+				temporaryDifference = digitAtA - digitAtB;
+				requiredNumber = temporaryDifference + requiredNumber;
+
+			}
+			
+			else {
+
+				if (a.charAt(difference + i + 1) !== "0") {
+
+					let stepDown = a.charAt(difference + i - 1) - 1;
+					a = a.substring(0, difference + i - 1) + stepDown + a.substring(difference + i, lengthA);					
+					temporaryDifference = (1 + digitAtA) - digitAtB;	
+
+					requiredNumber = temporaryDifference + requiredNumber;
+
+				}
+
+			}
+
+		}
+		
+		requiredNumber = a.substring(0, difference) + requiredNumber;
+		
+		return requiredNumber;
+
+	}
+
+	else {
+
+		return "Arguments must be strings";
+
+	}
+	
+}
+
+console.log(subtract("22", "111"));
 
 /**MULTIPLICATION FUNCTION**/
 
@@ -78,6 +144,10 @@ function multiply(a, b) {
 
 		return requiredNumber;
 	
+	} else {
+
+		return "Arguments must be strings";
+
 	}
 
 }
