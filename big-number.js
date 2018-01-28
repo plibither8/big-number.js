@@ -70,12 +70,29 @@ function subtract(a, b) {
 			
 			else {
 
-				if (a.charAt(difference + i + 1) !== "0") {
+				if (a.charAt(difference + i - 1) !== "0") {
 
-					let stepDown = a.charAt(difference + i - 1) - 1;
-					a = a.substring(0, difference + i - 1) + stepDown + a.substring(difference + i, lengthA);					
-					temporaryDifference = (1 + digitAtA) - digitAtB;	
+					a = a.substring(0, difference + i - 1) + (a.charAt(difference + i - 1) - 1) + a.substring(difference + i, lengthA);
+					temporaryDifference = (1 + digitAtA) - digitAtB;
+					requiredNumber = temporaryDifference + requiredNumber;
 
+				}
+
+				else {
+
+					let count = 1;
+
+					while (a.charAt(difference + i - count) === "0") {
+
+						a = a.substring(0, difference + i - count - 1) + "9" + a.substring(difference + i - count, lengthA);
+
+						count++;
+
+
+					}
+
+					a = a.substring(0, difference + i - 1) + (a.charAt(difference + i - 1) - 1) + a.substring(difference + i, lengthA);
+					temporaryDifference = (1 + digitAtA) - digitAtB;
 					requiredNumber = temporaryDifference + requiredNumber;
 
 				}
@@ -98,7 +115,7 @@ function subtract(a, b) {
 	
 }
 
-console.log(subtract("22", "111"));
+console.log(subtract("1007004", "56"));
 
 /**MULTIPLICATION FUNCTION**/
 
